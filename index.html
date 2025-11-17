@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SamajDarpan — Prototype</title>
+  <meta name="description" content="SamajDarpan — transparency for public works. Prototype demo by TanZ" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-1: #0d2444;
+      --bg-2: #542857;
+      --card: #071426;
+      --glass: rgba(255, 255, 255, 0.03);
+      --accent: #7c5cff;
+      --accent-2: #00d4ff;
+      --muted: #9fb3c9;
+      --highlight-text-light: #eaf6ff;
+      --gap: 16px;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+      --max-width: 1200px;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-size: 11px;
+      margin: 0;
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: #eaf6ff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.45;
+      background: linear-gradient(120deg, var(--bg-1) 0%, var(--bg-2) 40%, #8d1919 100%);
+      background-size: 400% 400%;
+      animation: hueShift 10s ease-in-out infinite;
+    }
+
+    @keyframes hueShift {
+      0% {
+        background-position: 0% 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 8px 0
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px
+
+    }
+
+    .mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(124, 92, 255, 0.14)
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .Main_Navigation {
+      height: 50px;
+      width: 100%;
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.03)
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(124, 92, 255, 0.14)
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: var(--muted);
+      cursor: pointer
+    }
+
+    .hero {
+      top: 20px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 15px;
+      align-items: start;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.01));
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-color: #9fb3c9;
+    }
+
+    #learn {
+      background: rgba(0, 0, 0, 0.4);
+      width: 1160px;
+      font-size: 20px;
+    }
+
+    #complaint {
+      background: rgba(0, 0, 0, 0.4);
+      width: 1160px;
+    }
+
+    .hero-left h1 {
+      font-size: 30px;
+      margin: 0 0 8px
+    }
+
+    .hero-left p {
+      color: var(--muted);
+      margin: 0 0 16px
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px
+    }
+
+    .stat {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.444), rgba(0, 0, 0, 0.444));
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px
+    }
+
+    .stat .num {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff
+    }
+
+    .map-preview {
+      height: 100%;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #04263b, #063846);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .map-sim {
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 700;
+      overflow: hidden;
+    }
+
+    .map-sim iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-weight: 700
+    }
+
+    .tan {
+      position: relative;
+      bottom: 350px; /* very small gap to hero */
+      width: 825px;
+    }
+
+    .asider {
+      position: relative;
+      top: -340px;
+    }
+
+    .card_map_preview {
+      position: relative;
+      /* height will be set by JS to match from hero-left top -> projects bottom */
+      height: 620px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      padding: 16px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .project-card.highlight {
+      background: rgba(0, 0, 0, 0.444);
+      color: var(--highlight-text-light);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .project-card.highlight .small,
+    .project-card.highlight .muted,
+    .project-card.highlight .card-meta,
+    .project-card.highlight .tag,
+    .project-card.highlight .trust-badge,
+    .project-card.highlight h3 {
+      color: var(--highlight-text-light);
+    }
+
+    .project-card.highlight .progress {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .project-card.highlight .progress>i {
+      background: linear-gradient(90deg, #7c5cff, #00d4ff);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5)
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .progress {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress>i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2))
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .workers-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px
+    }
+
+    .workers-table th,
+    .workers-table td {
+      padding: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .project-details-trust {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    #trustChart {
+      width: 100px;
+      max-width: 320px;
+      height: 170px;
+    }
+
+    .trust-legend {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--muted);
+    }
+
+    /* small colored dot inside legend */
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    #mSafety,
+    #mTimeliness,
+    #mCost,
+    #mEnv,
+    #mCommunity {
+      background: rgba(227, 7, 7, 0.01);
+      font-size: 20px;
+      gap: 40px
+    }
+
+    .muted.small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(3, 6, 23, 0.6), rgba(3, 6, 23, 0.86));
+      z-index: 999;
+      padding: 20px
+    }
+
+    .modal.open {
+      display: flex
+    }
+
+    .panel {
+      width: min(1100px, 98%);
+      max-height: 90vh;
+      overflow: auto;
+      border-radius: 12px;
+      padding: 18px;
+      background: linear-gradient(180deg, #071028, #0b1b2c);
+      border: 1px solid rgba(255, 255, 255, 0.04)
+    }
+
+    @media (max-width:980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 12px
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #trustChart {
+        max-width: 100%;
+        height: 150px;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+        gap: 12px
+      }
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .chip {
+      display: inline-flex;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      font-weight: 700
+    }
+
+    :focus {
+      outline: 2px solid rgba(124, 92, 255, 0.22);
+      outline-offset: 2px
+    }
+
+    input,
+    select,
+    textarea {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 8px;
+      border-radius: 8px;
+      color: var(--muted);
+      width: 100%;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    footer {
+      position: relative;
+      top: -320px;
+      font-size: large;
+    }
+
+    #filterstatus {
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" role="application" aria-labelledby="appTitle">
+    <header>
+      <div class="logo">
+        <div class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(255,255,255,0.08)" stroke="#fff" stroke-opacity="0.08" />
+            <path d="M7 9h10M7 13h6" stroke="#fff" stroke-opacity="0.7" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="head">
+          <div class="brand" id="appTitle">SamajDarpan</div>
+          <div class="muted small">Transparency • Accountability • Community</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="Main_Navigation">
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#trust">TrustMeter</a>
+        <a href="#complaint">Complaint</a>
+        <a href="#learn">Learn</a>
+        <button class="btn" id="openAdmin">Admin</button>
+      </nav>
+    </div>
+    <br>
+    <hr>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card hero-left">
+        <h1>SamajDarpan — Transparent Public Works</h1>
+        <p class="muted">Track projects, tenders, builders, and workers — all in one transparent dashboard. This demo
+          includes a sample detailed entry for India’s New Parliament building.</p>
+
+        <div style="display:flex;gap:12px;margin-top:8px">
+          <button class="btn" id="btnExplore">Explore Projects</button>
+          <button class="btn-ghost" id="btnComplaint">Raise a Complaint</button>
+        </div>
+
+        <div class="stats" aria-hidden="true">
+          <div class="stat">
+            <div class="num" id="statProjects">0</div>
+            <div class="small">Active Projects</div>
+          </div>
+          <div class="stat">
+            <div class="num" id="statBuilders">0</div>
+            <div class="small">Builders Registered</div>
+          </div>
+          <div class="stat">
+            <div class="num" id="statResolved">0</div>
+            <div class="small">Complaints Resolved</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card_map_preview map-preview" aria-hidden="true">
+        <div class="tag">Live Map Preview</div>
+        <div class="map-sim" id="mapSim" role="region" aria-label="Live map preview">
+          <div style="color:var(--muted)">Loading map...</div>
+        </div>
+      </aside>
+    </section>
+
+    <main>
+      <!-- LEFT: Projects + Details -->
+      <section class="tan">
+        <div id="projects" class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h1 style="margin:0">Projects</h1>
+            <div class="flex" style="display:flex;gap:8px;align-items:center">
+              <input id="searchBox" placeholder="Search project or area..."
+                style="background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:var(--muted);width:240px" />
+              <select id="filterStatus"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:var(--muted)">
+                <option value="">All</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Delayed">Delayed</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="height:8px"></div>
+
+          <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card" id="projectDetailsCard" aria-hidden="true" style="display:none"></div>
+      </section>
+
+      <!-- RIGHT column kept minimal (removed old TrustMeter as requested) -->
+      <aside class="asider" aria-hidden="true" style="width:360px">
+        <div id="complaint" class="card">
+          <h3 style="margin:0">Raise a Complaint</h3>
+          <form id="complaintForm" class="complaint-form" onsubmit="return false" aria-label="Complaint form">
+            <input id="cName" placeholder="Your name" />
+            <div class="row" style="display:flex;gap:8px;margin-top:8px">
+              <div class="col" style="flex:1"><input id="cArea" placeholder="Area / locality" /></div>
+              <div class="col" style="flex:1"><select id="cType">
+                  <option>Garbage</option>
+                  <option>Road</option>
+                  <option>Sewer</option>
+                  <option>Other</option>
+                </select></div>
+            </div>
+            <textarea id="cDesc" rows="3" placeholder="Short description..." style="margin-top:8px"></textarea>
+            <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+              <input id="cFile" type="file" accept="image/*" />
+              <button class="btn" id="submitComplaint">Submit</button>
+            </div>
+            <div id="complaintMsg" class="muted small" aria-live="polite" style="margin-top:8px"></div>
+          </form>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div id="learn" class="card">
+          <h3 style="margin:0">Learn & Awareness</h3>
+          <div style="display:grid;gap:8px;margin-top:10px">
+            <div class="notice">
+              <div style="font-weight:700">How budgets work</div>
+              <div class="small muted">Infographics and short explainers for students & citizens</div>
+            </div>
+            <div class="notice">
+              <div style="font-weight:700">Voice assistant demo</div>
+              <div class="small muted">Tap the mic icon to hear a civic explainer.</div>
+              <div style="height:8px"></div>
+              <div style="display:flex;justify-content:flex-end">
+                <button class="btn-ghost" id="voiceBtn">🔊 Demo Voice</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer style="margin-top:30px;padding:28px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center">
+      <div class="muted small">© SamajDarpan • Aarambhathon 2025 • Team SamajDarpan</div>
+      <div class="muted small">Built as prototype — demo only</div>
+    </footer>
+  </div>
+
+  <!-- Admin Modal -->
+  <div class="modal" id="modalAdmin" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 id="adminTitle" style="margin:0">Admin / MCD Panel (Demo)</h3>
+        <div style="display:flex;gap:8px"><button class="btn-ghost" id="closeAdmin">Close</button></div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="admin">
+        <div style="display:flex;gap:12px">
+          <div style="flex:1">
+            <label class="small muted">Create Project</label>
+            <input id="newProjectName" placeholder="Project name" />
+            <input id="newProjArea" placeholder="Area/locality" style="margin-top:8px" />
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <input id="newBudget" placeholder="Budget (₹)" />
+              <select id="newStatus">
+                <option>Ongoing</option>
+                <option>Delayed</option>
+                <option>Completed</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" id="createProject">Create</button>
+            </div>
+          </div>
+
+          <div style="flex:1">
+            <label class="small muted">Builder Scores (0–100)</label>
+            <select id="selectBuilder" style="margin-bottom:8px"></select>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+              <input id="sSafety" placeholder="Safety (%)" />
+              <input id="sTime" placeholder="Timeliness (%)" />
+              <input id="sCost" placeholder="Cost Control (%)" />
+              <input id="sEnv" placeholder="Env Compliance (%)" />
+              <input id="sCommunity" placeholder="Community (%)" />
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" id="saveScores">Save & Update Trust</button></div>
+          </div>
+        </div>
+
+        <hr style="border-color:rgba(255,255,255,0.03)" />
+
+        <div>
+          <h4 style="margin:0 0 8px 0">Existing Projects</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Area</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminProjectList"></tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Worker List Modal -->
+  <div class="modal" id="modalWorkers" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="workersTitle">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 id="workersTitle" style="margin:0">Workers — Project Roster</h3>
+        <div style="display:flex;gap:8px"><button class="btn-ghost" id="closeWorkers">Close</button></div>
+      </div>
+      <div id="workersContent"></div>
+    </div>
+  </div>
+
+  <!-- ECharts (for the semicircle multi-segment gauge) -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+  <script>
+    const LS_KEY = 'samajData_v2';
+
+    const initialData = {
+      projects: [
+        {
+          id: 'parl-nd',
+          name: 'New Parliament Building, New Delhi (Sansad Bhavan)',
+          area: 'Central Vista, New Delhi',
+          budget: 9700000000,
+          status: 'Completed',
+          progress: 100,
+          builderId: 'tataprojects',
+          tender: {
+            awardedTo: 'Tata Projects Limited',
+            initialCost: 8619000000,
+            finalEstimate: 9710000000,
+            tenderDate: '2020-09-01',
+            foundationStone: '2020-12-10',
+            inauguration: '2023-05-28'
+          },
+          description: "Triangular-shaped legislature complex designed by Bimal Patel. Seating: Lok Sabha 888, Rajya Sabha 384. Materials: Red & yellow sandstone. Eco-friendly & earthquake resistant.",
+          workers: [
+            { name: 'Anshu Tiwari', age: 32, mobile: '9787382783', eid: '737894398', role: 'Site Supervisor' },
+            { name: 'Ravi Kumar', age: 28, mobile: '9812345670', eid: '737894399', role: 'Mason' },
+            { name: 'Pooja Yadav', age: 26, mobile: '9123456721', eid: '737894400', role: 'Electrical Assistant' },
+            { name: 'Imran Sheikh', age: 35, mobile: '9832456712', eid: '737894401', role: 'Carpenter' },
+            { name: 'Rajesh Singh', age: 31, mobile: '9745671234', eid: '737894402', role: 'Welder' },
+            { name: 'Deepak Verma', age: 24, mobile: '9898765432', eid: '737894403', role: 'Labour (General)' },
+            { name: 'Kiran Das', age: 29, mobile: '9812340009', eid: '737894404', role: 'Plumber' },
+            { name: 'Aman Gupta', age: 33, mobile: '9776654321', eid: '737894405', role: 'Machine Operator' },
+            { name: 'Suman Devi', age: 30, mobile: '9987452310', eid: '737894406', role: 'Painter' },
+            { name: 'Harish Patel', age: 27, mobile: '9798123400', eid: '737894407', role: 'Site Helper' },
+            { name: 'Mohit Sharma', age: 34, mobile: '9823127890', eid: '737894408', role: 'Concrete Finisher' },
+            { name: 'Santosh Thakur', age: 25, mobile: '9799988776', eid: '737894409', role: 'Electrician' },
+            { name: 'Vikas Chauhan', age: 36, mobile: '9887765431', eid: '737894410', role: 'Supervisor (Safety)' },
+            { name: 'Meena Kumari', age: 28, mobile: '9765432189', eid: '737894411', role: 'Material Handler' },
+            { name: 'Suresh Naik', age: 40, mobile: '9812376543', eid: '737894412', role: 'Crane Operator' }
+          ]
+        },
+        {
+          id: 'p1',
+          name: 'Palam Road Redevelopment',
+          area: 'Palam',
+          budget: 1200000,
+          status: 'Ongoing',
+          progress: 56,
+          builderId: 'b1',
+          workers: [
+            { name: 'Amit Sharma', age: 30, mobile: '9810012345', eid: 'p1001', role: 'Site Supervisor' },
+            { name: 'Rakesh Gupta', age: 26, mobile: '9810022345', eid: 'p1002', role: 'Mason' },
+            { name: 'Sunita Devi', age: 24, mobile: '9810032345', eid: 'p1003', role: 'Labour (General)' },
+            { name: 'Kamal Kishore', age: 33, mobile: '9810042345', eid: 'p1004', role: 'Traffic Coordinator' }
+          ]
+        },
+        {
+          id: 'p2',
+          name: 'Community Park — Block A',
+          area: 'Dwarka',
+          budget: 850000,
+          status: 'Delayed',
+          progress: 47,
+          builderId: 'b2',
+          workers: [
+            { name: 'Megha Rani', age: 25, mobile: '9810052345', eid: 'p2001', role: 'Landscape Assistant' },
+            { name: 'Arjun Verma', age: 29, mobile: '9810062345', eid: 'p2002', role: 'Gardener' },
+            { name: 'Lakshmi Nair', age: 27, mobile: '9810072345', eid: 'p2003', role: 'Irrigation Tech' }
+          ]
+        },
+        {
+          id: 'p3',
+          name: 'Drainage Repair — Sector 5',
+          area: 'Janakpuri',
+          budget: 390000,
+          status: 'Completed',
+          progress: 100,
+          builderId: 'b3',
+          workers: [
+            { name: 'Satish Yadav', age: 34, mobile: '9810082345', eid: 'p3001', role: 'Supervisor' },
+            { name: 'Vikram Patel', age: 31, mobile: '9810092345', eid: 'p3002', role: 'Excavator Operator' },
+            { name: 'Ritu Kaur', age: 28, mobile: '9810102345', eid: 'p3003', role: 'Pipe Fitter' }
+          ]
+        }
+      ],
+      builders: {
+        'tataprojects': { id: 'tataprojects', name: 'Tata Projects Ltd', projects: ['parl-nd'], metrics: { safety: 89, timeliness: 72, cost: 65, env: 80, community: 75 } },
+        'b1': { id: 'b1', name: 'Sathi Builders', projects: ['p1'], metrics: { safety: 82, timeliness: 60, cost: 72, env: 58, community: 65 } },
+        'b2': { id: 'b2', name: 'Nirma Construction', projects: ['p2'], metrics: { safety: 68, timeliness: 45, cost: 50, env: 42, community: 48 } },
+        'b3': { id: 'b3', name: 'Skyline Infra', projects: ['p3'], metrics: { safety: 92, timeliness: 90, cost: 88, env: 80, community: 84 } }
+      },
+      complaints: []
+    };
+
+    const store = {
+      load() {
+        try { const raw = localStorage.getItem(LS_KEY); return raw ? JSON.parse(raw) : structuredClone(initialData); }
+        catch (e) { console.error(e); return structuredClone(initialData); }
+      },
+      save(data) { localStorage.setItem(LS_KEY, JSON.stringify(data)); }
+    };
+
+    let appData = store.load();
+
+    const $ = sel => document.querySelector(sel);
+    const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const fmt = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    const renderStats = () => {
+      $('#statProjects').textContent = appData.projects.length;
+      $('#statBuilders').textContent = Object.keys(appData.builders).length;
+      $('#statResolved').textContent = appData.complaints.filter(c => c.status === 'Resolved').length;
+    };
+
+    const computeComposite = (metrics = {}) => {
+      if (!metrics) return '--';
+      const vals = [metrics.safety || 0, metrics.timeliness || 0, metrics.cost || 0, metrics.env || 0, metrics.community || 0];
+      const avg = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
+      return avg;
+    };
+
+    const highlightIds = new Set(['parl-nd', 'p1', 'p2', 'p3']);
+
+    const renderProjects = () => {
+      const grid = $('#projectsGrid'); grid.innerHTML = '';
+      const q = $('#searchBox').value.trim().toLowerCase();
+      const statusFilter = $('#filterStatus').value;
+      let list = appData.projects.slice().filter(p => {
+        if (statusFilter && p.status !== statusFilter) return false;
+        if (q && !(p.name.toLowerCase().includes(q) || (p.area || '').toLowerCase().includes(q))) return false;
+        return true;
+      });
+
+      list.forEach(p => {
+        const builder = appData.builders[p.builderId] || { name: '—', id: '-' };
+        const trust = computeComposite(builder.metrics);
+        const card = document.createElement('div'); card.className = 'project-card';
+        if (highlightIds.has(p.id)) card.classList.add('highlight');
+
+        const progressVal = Math.max(0, Math.min(100, Number(p.progress || 0)));
+
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <h3>${esc(p.name)}</h3>
+              <div class="small muted">${esc(p.area || '—')} • ${p.workers ? p.workers.length + ' workers' : (p.workersCount || 0) + ' workers'}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="trust-badge">${trust}%</div>
+              <div class="small muted" style="margin-top:6px">${p.status || '—'}</div>
+            </div>
+          </div>
+          <div class="progress" aria-hidden="true"><i style="width:${progressVal}%"></i></div>
+          <div class="card-meta">
+            <div class="small">Budget: ₹${fmt(p.budget || 0)}</div>
+            <div><button class="btn-ghost" data-id="${p.id}" onclick="openDetails('${p.id}')">View</button></div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+    };
+
+    // --------------------------
+    // TrustMeter: ECharts semicircle multi-colour segments
+    // categories mapping & colors (user-specified mapping)
+    const TRUST_CATEGORIES = [
+      { key: 'successful', label: 'Successful', color: '#00d1a6' }, // green
+      { key: 'ongoing', label: 'Ongoing', color: '#2b9cff' },      // blue
+      { key: 'upcoming', label: 'Upcoming', color: '#8b5cf6' },    // purple
+      { key: 'delayed', label: 'Delayed', color: '#0b0b0b' },      // black
+      { key: 'broken', label: 'Broken', color: '#ff4f4f' }         // red
+    ];
+
+    // deterministic pseudo-random generator from a string (for fallback)
+    function seededRandomFromString(str) {
+      let h = 2166136261 >>> 0;
+      for (let i = 0; i < str.length; i++) {
+        h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+      }
+      return function () {
+        h += 0x6D2B79F5;
+        let t = Math.imul(h ^ (h >>> 15), 1 | h);
+        t = t + Math.imul(t ^ (t >>> 7), 61 | t) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+
+    // derive segment values from builder metrics if present, otherwise fallback to pseudo-random
+    function computeSegmentsForBuilder(builder = {}) {
+      const m = builder.metrics || null;
+      let vals = [];
+      if (m) {
+        // Convert metrics into a plausible distribution:
+        // successful = avg(safety, community)
+        // ongoing = timeliness
+        // upcoming = env
+        // delayed = max(0, 60 - timeliness) (higher when timeliness low)
+        // broken = max(0, 100 - composite - small buffer)
+        const successful = ((m.safety || 0) + (m.community || 0)) / 2;
+        const ongoing = (m.timeliness || 0);
+        const upcoming = (m.env || 0);
+        const delayed = Math.max(0, 60 - (m.timeliness || 0));
+        const composite = computeComposite(m);
+        let broken = Math.max(0, 100 - (successful + ongoing + upcoming + delayed) * 0.6); // scale to avoid huge negative
+        // Build base array and normalize
+        vals = [successful, ongoing, upcoming, delayed, broken];
+      } else {
+        // fallback deterministic random values
+        const rnd = seededRandomFromString(builder.id || 'anon');
+        vals = [rnd(), rnd(), rnd(), rnd(), rnd()].map(v => v * 100);
+      }
+
+      // Avoid all zeros, and normalize to sum to 100
+      const safe = vals.map(v => Math.max(0, Number(v) || 0));
+      const sum = safe.reduce((a, b) => a + b, 0) || 1;
+      const normalized = safe.map(v => (v / sum) * 100);
+
+      // Round and ensure sum exactly 100 by adjusting the largest segment
+      const rounded = normalized.map(v => Math.round(v));
+      const diff = 100 - rounded.reduce((a, b) => a + b, 0);
+      if (diff !== 0) {
+        // find index of largest original normalized value to adjust
+        let maxIdx = 0, maxVal = -Infinity;
+        for (let i = 0; i < normalized.length; i++) {
+          if (normalized[i] > maxVal) { maxVal = normalized[i]; maxIdx = i; }
+        }
+        rounded[maxIdx] += diff;
+      }
+      // Ensure no negative and sum 100
+      return rounded.map(v => Math.max(0, v));
+    }
+
+    // render semicircle pie/donut using ECharts
+    function renderSegmentGauge(builderId, containerId = 'trustChart') {
+      const builder = appData.builders[builderId] || { id: builderId || 'anon', name: '—', metrics: null };
+      const segs = computeSegmentsForBuilder(builder);
+
+      // prepare data in the order of TRUST_CATEGORIES
+      const data = TRUST_CATEGORIES.map((cat, idx) => ({ name: cat.label, value: segs[idx], itemStyle: { color: cat.color } }));
+
+      // create/resize chart
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = ''; // clear old
+      const chart = echarts.init(container, null, { renderer: 'canvas' });
+
+      const option = {
+        backgroundColor: 'transparent',
+        tooltip: { show: false },
+        series: [
+          {
+            name: 'TrustSegments',
+            type: 'pie',
+            radius: ['46%', '70%'],
+            center: ['50%', '78%'], // push down so only semicircle visible
+            startAngle: 180,
+            avoidLabelOverlap: false,
+            label: { show: false },
+            emphasis: { itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0,0,0,0.3)' } },
+            data: data,
+            animation: true,
+            silent: true
+          },
+          // background arc (subtle)
+          {
+            type: 'pie',
+            radius: ['72%', '74%'],
+            center: ['50%', '78%'],
+            startAngle: 180,
+            label: { show: false },
+            data: [{ value: 1, itemStyle: { color: 'rgba(255,255,255,0.02)' } }],
+            silent: true
+          }
+        ],
+      };
+
+      chart.setOption(option);
+      // render center text (composite)
+      const comp = computeComposite(builder.metrics || {});
+      // We'll overlay a small DOM element for center text
+      const overlayId = containerId + '_center';
+      let overlay = document.getElementById(overlayId);
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = overlayId;
+        overlay.style.position = 'absolute';
+        overlay.style.left = '50%';
+        overlay.style.top = '32%';
+        overlay.style.transform = 'translate(-50%,-50%)';
+        overlay.style.textAlign = 'center';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.color = '#00d1a6';
+        overlay.style.fontWeight = '800';
+        overlay.style.fontSize = '22px';
+        container.style.position = 'relative';
+        container.appendChild(overlay);
+      }
+      overlay.innerHTML = <div style="font-size:22px;color: #${(comp>=75?'00d1a6':'00d1a6')}">${comp}%</div><div style="font-size:12px;color:var(--muted);margin-top:4px">Composite score</div>;
+
+      // Build & fill legend/pills below the chart (in the details panel)
+      const legendContainerId = containerId + '_legend';
+      let legendContainer = document.getElementById(legendContainerId);
+      if (!legendContainer) {
+        // create a sibling element after container
+        legendContainer = document.createElement('div');
+        legendContainer.id = legendContainerId;
+        legendContainer.className = 'trust-legend';
+        container.parentNode.appendChild(legendContainer);
+      }
+      legendContainer.innerHTML = '';
+      data.forEach((d, i) => {
+        const pill = document.createElement('div');
+        pill.className = 'pill';
+        pill.innerHTML = <span class="dot" style="background:${TRUST_CATEGORIES[i].color}"></span><span style="font-weight:700;color:var(--muted);margin-left:6px">${d.name}</span><span style="margin-left:8px;font-weight:800;color:#fff">${d.value}%</span>;
+        legendContainer.appendChild(pill);
+      });
+
+      // Below legend, also show builder metrics compactly
+      const metricsId = containerId + '_metrics';
+      let metricsDiv = document.getElementById(metricsId);
+      if (!metricsDiv) {
+        metricsDiv = document.createElement('div');
+        metricsDiv.id = metricsId;
+        metricsDiv.style.marginTop = '8px';
+        metricsDiv.style.textAlign = 'center';
+        container.parentNode.appendChild(metricsDiv);
+      }
+      const mm = builder.metrics || {};
+      metricsDiv.innerHTML = <div class="muted small">Safety: ${(mm.safety||'—')}% &nbsp; • &nbsp; Timeliness: ${(mm.timeliness||'—')}% &nbsp; • &nbsp; Cost: ${(mm.cost||'—')}% &nbsp; • &nbsp; Env: ${(mm.env||'—')}% &nbsp; • &nbsp; Community: ${(mm.community||'—')}%</div>;
+
+      // resize on window
+      window.addEventListener('resize', () => chart.resize());
+    }
+
+    // --------------------------
+    // Project details + openDetails updated to include TrustMeter above workers
+    window.openDetails = (id) => {
+      const p = appData.projects.find(x => x.id === id); if (!p) return;
+      const builder = appData.builders[p.builderId] || { name: '—', id: '-' };
+      const card = $('#projectDetailsCard'); card.style.display = 'block'; card.setAttribute('aria-hidden', 'false');
+
+      const tenderHtml = p.tender ? `
+        <div style="margin-top:6px;color:var(--muted)">
+          <div><strong>Tender:</strong> ${esc(p.tender.awardedTo)} • Initial: ₹${fmt(p.tender.initialCost)} • Final est. ₹${fmt(p.tender.finalEstimate)}</div>
+          <div class="small muted">Foundation: ${p.tender.foundationStone} • Inauguration: ${p.tender.inauguration}</div>
+        </div>
+      `: '';
+
+      // Removed mini sample table rows — only show "View full roster" button per instruction
+      let workerPreview = '';
+      const wlist = p.workers || [];
+      if (wlist.length) {
+        workerPreview = <div style="margin-top:10px"><button class="btn-ghost" onclick="showWorkers('${p.id}')">View full roster</button></div>;
+      }
+
+      card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <h2 style="margin:0">${esc(p.name)}</h2>
+            <div class="muted small">${esc(p.area)} • Builder: ${esc(builder.name)}</div>
+            <p class="muted" style="margin-top:8px">${esc(p.description || 'Project details not available.')}</p>
+            ${tenderHtml}
+            <div style="height:12px"></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn" onclick="scrollToTrust('${p.builderId}')">View Trust & Metrics</button>
+              <button class="btn-ghost" onclick="showWorkers('${p.id}')">View Workers</button>
+            </div>
+          </div>
+
+          <div style="width:360px;text-align:right">
+            <div class="trust-badge" style="font-size:18px">${computeComposite(builder.metrics)}%</div>
+            <div class="small muted" style="margin-top:6px">${esc(builder.name)}</div>
+            <div style="height:18px"></div>
+            <div class="small muted">Budget: ₹${fmt(p.budget || 0)}</div>
+            <div class="small muted">Progress: ${p.progress || 0}%</div>
+            <div class="small muted">Workers: ${p.workers ? p.workers.length : p.workersCount || 0}</div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <!-- TrustMeter (semicircle) + legend + metrics placed here -->
+        <div class="project-details-trust">
+          <div id="trustChart" aria-hidden="false"></div>
+          <!-- legend and metrics DOM elements are inserted by renderSegmentGauge into siblings with suffixes -->
+        </div>
+
+        ${workerPreview}
+      `;
+
+      // render the ECharts semicircle for this builder
+      renderSegmentGauge(p.builderId, 'trustChart');
+
+      card.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // show full worker roster modal — now adds Salary column and assigns random paid/unpaid values
+    const showWorkers = (projectId) => {
+      const p = appData.projects.find(x => x.id === projectId); if (!p) return;
+      const modal = $('#modalWorkers'); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+      const content = $('#workersContent');
+      const list = p.workers || [];
+      if (!list.length) { content.innerHTML = '<div class="muted">No worker details available.</div>'; return; }
+
+      // Assign salary randomly at the time of opening full roster, but only if not present already
+      list.forEach(w => {
+        if (!('salary' in w)) w.salary = Math.random() > 0.5 ? 'paid' : 'unpaid';
+      });
+
+      let html = '<table class="workers-table"><thead><tr><th>#</th><th>Name</th><th>Age</th><th>Role</th><th>Salary</th><th>Mobile</th><th>Emp ID</th></tr></thead><tbody>';
+      list.forEach((w, i) => {
+        html += <tr><td>${i + 1}</td><td>${esc(w.name)}</td><td>${esc(w.age || '-')}</td><td>${esc(w.role)}</td><td>${esc(w.salary || '-')}</td><td>${esc(w.mobile)}</td><td>${esc(w.eid || '-')}</td></tr>;
+      });
+      html += '</tbody></table>';
+      content.innerHTML = html;
+    };
+    window.showWorkers = showWorkers;
+
+    // --------------------------
+    // Admin / builders list rendering etc.
+
+    const openAdmin = () => { $('#modalAdmin').classList.add('open'); $('#modalAdmin').setAttribute('aria-hidden', 'false'); renderAdminLists(); };
+    const closeAdmin = () => { $('#modalAdmin').classList.remove('open'); $('#modalAdmin').setAttribute('aria-hidden', 'true'); };
+    $('#openAdmin').addEventListener('click', openAdmin); $('#closeAdmin').addEventListener('click', closeAdmin);
+
+    const renderAdminLists = () => {
+      const tbody = $('#adminProjectList'); tbody.innerHTML = '';
+      appData.projects.forEach(p => { const tr = document.createElement('tr'); tr.innerHTML = <td>${esc(p.name)}</td><td>${esc(p.area)}</td><td>${esc(p.status || '')}</td><td><button class='btn-ghost' onclick="deleteProject('${p.id}')">Delete</button></td>; tbody.appendChild(tr); });
+      const sel = $('#selectBuilder'); sel.innerHTML = '';
+      Object.values(appData.builders).forEach(b => { const opt = document.createElement('option'); opt.value = b.id; opt.textContent = b.name; sel.appendChild(opt); });
+      populateBuilderInputs();
+    };
+
+    const populateBuilderInputs = () => {
+      const id = $('#selectBuilder').value || Object.keys(appData.builders)[0]; if (!id) return; const b = appData.builders[id]; if (!b) return;
+      $('#sSafety').value = b.metrics.safety || 0; $('#sTime').value = b.metrics.timeliness || 0; $('#sCost').value = b.metrics.cost || 0; $('#sEnv').value = b.metrics.env || 0; $('#sCommunity').value = b.metrics.community || 0;
+    };
+    $('#selectBuilder').addEventListener('change', populateBuilderInputs);
+
+    $('#createProject').addEventListener('click', () => {
+      const name = $('#newProjectName').value.trim(); if (!name) return alert('Add a project name');
+      const area = $('#newProjArea').value.trim() || 'Unknown'; const budget = Number($('#newBudget').value) || 0; const status = $('#newStatus').value;
+      const id = 'p' + (Date.now() % 1000000);
+      const builderKeys = Object.keys(appData.builders); const builderId = builderKeys[Math.floor(Math.random() * builderKeys.length)];
+      appData.projects.push({ id, name, area, budget, status, progress: 0, builderId, workersCount: Math.floor(Math.random() * 60) + 6 });
+      store.save(appData); renderProjects(); renderAdminLists(); renderStats();
+      $('#newProjectName').value = ''; $('#newProjArea').value = ''; $('#newBudget').value = ''; alert('Project created (demo)');
+    });
+
+    window.deleteProject = (id) => { appData.projects = appData.projects.filter(p => p.id !== id); store.save(appData); renderProjects(); renderAdminLists(); renderStats(); };
+
+    $('#saveScores').addEventListener('click', () => {
+      const id = $('#selectBuilder').value; const b = appData.builders[id]; if (!b) return alert('Builder not found');
+      b.metrics.safety = Number($('#sSafety').value) || 0; b.metrics.timeliness = Number($('#sTime').value) || 0; b.metrics.cost = Number($('#sCost').value) || 0; b.metrics.env = Number($('#sEnv').value) || 0; b.metrics.community = Number($('#sCommunity').value) || 0;
+      store.save(appData); renderProjects(); renderAdminLists(); renderStats(); alert('Scores saved & Trust updated');
+    });
+
+    $('#submitComplaint').addEventListener('click', () => {
+      const name = $('#cName').value.trim() || 'Anonymous'; const area = $('#cArea').value.trim() || 'Unknown';
+      const type = $('#cType').value; const desc = $('#cDesc').value.trim(); const file = $('#cFile').files[0];
+      const id = 'c' + Date.now(); const complaint = { id, name, area, type, desc, fileName: file ? file.name : null, date: new Date().toISOString(), status: 'Submitted' };
+      appData.complaints.push(complaint); store.save(appData); renderStats(); $('#complaintMsg').textContent = 'Complaint submitted — tracking id: ' + id;
+      $('#cName').value = ''; $('#cArea').value = ''; $('#cDesc').value = ''; $('#cFile').value = '';
+    });
+
+    $('#voiceBtn').addEventListener('click', () => {
+      const text = "Welcome to SamajDarpan demo. This platform shows public project data, builder credibility, and allows citizens to raise issues.";
+      if ('speechSynthesis' in window) { const u = new SpeechSynthesisUtterance(text); u.rate = 1; u.lang = 'en-IN'; window.speechSynthesis.speak(u); } else alert('Speech not supported');
+    });
+
+    $('#btnExplore').addEventListener('click', () => { document.getElementById('projects').scrollIntoView({ behavior: 'smooth' }); });
+    $('#btnComplaint').addEventListener('click', () => { document.getElementById('complaint').scrollIntoView({ behavior: 'smooth' }); });
+
+    $('#modalAdmin').addEventListener('click', e => { if (e.target === $('#modalAdmin')) closeAdmin(); });
+    $('#modalWorkers').addEventListener('click', e => { if (e.target === $('#modalWorkers')) { $('#modalWorkers').classList.remove('open'); $('#modalWorkers').setAttribute('aria-hidden', 'true'); } });
+    $('#closeWorkers').addEventListener('click', () => { $('#modalWorkers').classList.remove('open'); $('#modalWorkers').setAttribute('aria-hidden', 'true'); });
+
+    $('#searchBox').addEventListener('input', () => renderProjects()); $('#filterStatus').addEventListener('change', () => renderProjects());
+
+    function scrollToTrust(builderId) {
+      // scroll to details card (which now contains the trust meter)
+      const el = document.getElementById('projectDetailsCard');
+      if (el) { el.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => renderSegmentGauge(builderId, 'trustChart'), 350); }
+    }
+
+    /* Map embed — fixed height, removed dynamic height sync/scroll listeners to prevent layout shifting */
+    function setMapEmbed() {
+      const mapSim = $('#mapSim');
+      if (!mapSim) return;
+      const iframeSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.884332560049!2d77.20049207500747!3d28.61544448241106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b8d8f7d3c2f%3A0xb0f740486b9a3f36!2sCentral%20Vista%20Project%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1699999999999";
+      mapSim.innerHTML = <iframe src="${iframeSrc}" title="SamajDarpan live map - Central Vista, New Delhi" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>;
+    }
+
+    const init = () => {
+      console.info('SamajDarpan init — projects:', appData.projects.length);
+      renderStats();
+      renderProjects();
+      renderAdminLists();
+      setMapEmbed();
+      // no global/aside gauge — removed as requested
+    };
+    init();
+  </script>
+</body>
+
+</html>
